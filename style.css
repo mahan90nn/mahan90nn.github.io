@@ -1,0 +1,56 @@
+body {
+  font-family: 'Courier New', monospace;
+  background: url('https://wallpapercave.com/wp/wp2538988.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: rgba(34, 34, 34, 0.9);
+  text-align: center;
+  padding: 2rem 1rem;
+  border-bottom: 4px solid #0f0;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+section {
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  max-width: 800px;
+  border-left: 4px solid #0f0;
+  border-radius: 8px;
+}
+
+h2 {
+  color: #0f0;
+  font-size: 2rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(34, 34, 34, 0.9);
+  border-top: 2px solid #0f0;
+}

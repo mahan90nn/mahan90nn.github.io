@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hyron Development — Minecraft Plugins & MTA Resources</title>
+  <meta name="description" content="Hyron Development builds clean, optimized Minecraft plugins and MTA resources with a focus on performance and player experience." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <style>
+    :root{
+      --bg:#070b14;
+      --panel:#0b1220cc;
+      --panel2:#0b1220;
+      --text:#e7eefc;
+      --muted:#a9b7d0;
+      --line:#1a2742;
+      --accent:#7c3aed;     /* purple */
+      --accent2:#22c55e;    /* green  */
+      --accent3:#38bdf8;    /* sky    */
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 20% 15%, rgba(124,58,237,.22), transparent 60%),
+                  radial-gradient(900px 600px at 75% 30%, rgba(56,189,248,.16), transparent 55%),
+                  radial-gradient(900px 600px at 70% 85%, rgba(34,197,94,.14), transparent 55%),
+                  var(--bg);
+      overflow-x:hidden;
+    }
+
+    /* subtle animated grid */
+    .grid{
+      position:fixed; inset:-2px;
+      pointer-events:none;
+      opacity:.18;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at 35% 20%, black 0%, transparent 60%);
+      animation: drift 16s linear infinite;
+    }
+    @keyframes drift{
+      0%{transform:translate3d(0,0,0)}
+      100%{transform:translate3d(-56px,-56px,0)}
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 0 18px;}
+
+    /* top nav */
+    header{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(7,11,20,.78), rgba(7,11,20,.35));
+      border-bottom: 1px solid rgba(26,39,66,.55);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap:12px;
+    }
+    .brand{display:flex; align-items:center; gap:12px;}
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 55%),
+        linear-gradient(135deg, rgba(124,58,237,1), rgba(56,189,248,1));
+      box-shadow: 0 10px 30px rgba(124,58,237,.25);
+      display:grid; place-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-10px;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.25) 45%, transparent 55%);
+      transform: translateX(-60%) rotate(20deg);
+      animation: sheen 4.2s ease-in-out infinite;
+    }
+    @keyframes sheen{
+      0%,35%{transform: translateX(-60%) rotate(20deg); opacity:.0}
+      45%{opacity:.55}
+      75%,100%{transform: translateX(70%) rotate(20deg); opacity:0}
+    }
+    .brand h1{
+      font-size: 14px; line-height: 1.1; margin:0;
+      letter-spacing:.3px;
+    }
+    .brand span{display:block; font-size:12px; color:var(--muted); font-weight:500; margin-top:2px}
+
+    .links{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
+    .links a{
+      font-size:13px; color:var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+      transition: .2s ease;
+      border: 1px solid transparent;
+    }
+    .links a:hover{color:var(--text); border-color: rgba(26,39,66,.8); background: rgba(11,18,32,.55)}
+
+    .actions{display:flex; gap:10px; align-items:center;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      font-weight:700;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(26,39,66,.9);
+      background: rgba(11,18,32,.55);
+      color:var(--text);
+      box-shadow: 0 8px 28px rgba(0,0,0,.25);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      font-size: 13px;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(11,18,32,.75); border-color: rgba(56,189,248,.35)}
+    .btn.primary{
+      border-color: rgba(124,58,237,.65);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(56,189,248,.75));
+      box-shadow: 0 18px 55px rgba(124,58,237,.20);
+    }
+    .btn.primary:hover{border-color: rgba(56,189,248,.7)}
+
+    .mobile{
+      display:none;
+    }
+
+    /* hero */
+    main{padding: 34px 0 70px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items:stretch;
+      margin-top: 18px;
+    }
+    .card{
+      border-radius: var(--radius2);
+      background: linear-gradient(to bottom right, rgba(11,18,32,.75), rgba(11,18,32,.42));
+      border: 1px solid rgba(26,39,66,.65);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(900px 400px at 20% 0%, rgba(124,58,237,.22), transparent 55%),
+                  radial-gradient(900px 400px at 90% 20%, rgba(56,189,248,.18), transparent 55%),
+                  radial-gradient(900px 400px at 70% 100%, rgba(34,197,94,.14), transparent 55%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .hero-left{padding: 26px 24px; min-height: 360px;}
+    .hero-left > *{position:relative; z-index:1}
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px; letter-spacing:.3px; font-weight:800;
+      color: rgba(231,238,252,.85);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(11,18,32,.55);
+      border: 1px solid rgba(26,39,66,.75);
+      width:fit-content;
+    }
+    .dot{
+      width:9px;height:9px;border-radius:99px;
+      background: linear-gradient(135deg, var(--accent), var(--accent3));
+      box-shadow: 0 0 0 4px rgba(124,58,237,.18);
+    }
+    .hero h2{
+      margin: 14px 0 8px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.08;
+      letter-spacing:-.6px;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 62ch;
+    }
+
+    .hero-ctas{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 18px;
+    }
+
+    .stats{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    .stat{
+      border-radius: 16px;
+      border: 1px solid rgba(26,39,66,.65);
+      background: rgba(11,18,32,.40);
+      padding: 12px;
+    }
+    .stat b{display:block; font-size: 16px}
+    .stat span{display:block; font-size: 12px; color: var(--muted); margin-top: 4px}
+
+    .hero-right{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .mini{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(26,39,66,.65);
+      background: rgba(11,18,32,.45);
+      position:relative;
+      overflow:hidden;
+    }
+    .mini > *{position:relative; z-index:1}
+    .mini::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 250px at 20% 10%, rgba(56,189,248,.18), transparent 60%),
+                  radial-gradient(500px 250px at 90% 80%, rgba(124,58,237,.18), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .mini h3{margin:0 0 6px; font-size: 14px; letter-spacing:.2px}
+    .mini p{margin:0; color:var(--muted); font-size: 13px; line-height:1.6}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px}
+    .chip{
+      font-size: 12px;
+      color: rgba(231,238,252,.9);
+      border: 1px solid rgba(26,39,66,.75);
+      background: rgba(7,11,20,.35);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    /* sections */
+    section{margin-top: 18px}
+    .section-card{padding: 22px 20px}
+    .section-title{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .feature{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(26,39,66,.65);
+      background: rgba(11,18,32,.42);
+    }
+    .feature h4{margin:0 0 6px; font-size: 14px}
+    .feature p{margin:0; color:var(--muted); font-size: 13px; line-height:1.6}
+    .feature .tag{
+      display:inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(231,238,252,.85);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(26,39,66,.75);
+      background: rgba(7,11,20,.30);
+    }
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .list{
+      margin: 0;
+      padding-left: 16px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 13px;
+    }
+
+    /* portfolio */
+    .portfolio{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .proj{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(26,39,66,.65);
+      background: rgba(11,18,32,.42);
+      min-height: 146px;
+      position:relative;
+      overflow:hidden;
+    }
+    .proj::after{
+      content:"";
+      position:absolute; inset:auto -60px -60px auto;
+      width:180px; height:180px; border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(56,189,248,.22), transparent 60%),
+                  radial-gradient(circle at 60% 70%, rgba(124,58,237,.22), transparent 60%);
+      filter: blur(2px);
+      opacity:.9;
+    }
+    .proj > *{position:relative; z-index:1}
+    .proj h4{margin:0 0 6px; font-size: 14px}
+    .proj p{margin:0; color:var(--muted); font-size: 13px; line-height:1.6}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px}
+    .pill{font-size: 12px; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(26,39,66,.75); background: rgba(7,11,20,.30); color: rgba(231,238,252,.85)}
+
+    /* contact */
+    form{display:grid; gap: 10px; margin-top: 12px}
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap: 10px}
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(26,39,66,.8);
+      background: rgba(7,11,20,.40);
+      color: var(--text);
+      outline: none;
+      font-size: 14px;
+    }
+    textarea{min-height: 110px; resize: vertical}
+    input:focus, textarea:focus{border-color: rgba(56,189,248,.55); box-shadow: 0 0 0 4px rgba(56,189,248,.12)}
+    .hint{color:var(--muted); font-size: 12px; line-height:1.6}
+
+    footer{
+      margin-top: 18px;
+      padding: 18px 0 34px;
+      color: rgba(169,183,208,.9);
+      font-size: 12px;
+    }
+    .footerbox{
+      display:flex; gap: 12px; justify-content:space-between; align-items:center; flex-wrap:wrap;
+      padding-top: 16px;
+      border-top: 1px solid rgba(26,39,66,.6);
+    }
+
+    /* responsive */
+    @media (max-width: 920px){
+      .hero{grid-template-columns: 1fr}
+      .stats{grid-template-columns: repeat(3, minmax(0,1fr))}
+      .grid3, .portfolio{grid-template-columns: 1fr}
+      .two{grid-template-columns: 1fr}
+    }
+    @media (max-width: 680px){
+      .links{display:none}
+      .mobile{display:inline-flex}
+      .row{grid-template-columns: 1fr}
+      .stats{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Hyron Development Home">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>HYRON DEVELOPMENT</h1>
+            <span>Minecraft Plugins • MTA Resources</span>
+          </div>
+        </a>
+
+        <nav class="links" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn" id="discordBtn" href="#" title="Discord">
+            Discord
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="btn primary" id="getStartedBtn" href="#contact">
+            Start a Project
+            <span aria-hidden="true">⚡</span>
+          </a>
+          <button class="btn mobile" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+
+      <!-- mobile menu -->
+      <div id="mobileMenu" style="display:none; padding-bottom:14px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="#services">Services</a>
+          <a class="btn" href="#portfolio">Portfolio</a>
+          <a class="btn" href="#process">Process</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap">
+
+      <div class="hero">
+        <div class="card hero-left">
+          <div class="kicker"><span class="dot" aria-hidden="true"></span> We don’t just code — we craft gameplay.</div>
+          <h2>We build fast, clean, and reliable<br/>Minecraft plugins & MTA resources.</h2>
+          <p>
+            Hyron Development is a creator team focused on performance, stability, and player experience.
+            From custom mechanics to full server systems, we deliver maintainable code that scales with your community.
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn primary" href="#portfolio">See Our Work <span aria-hidden="true">→</span></a>
+            <a class="btn" href="#services">What We Build</a>
+            <a class="btn" id="storeBtn" href="#" title="Downloads / Store">Downloads <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <div class="stats" aria-label="Highlights">
+            <div class="stat">
+              <b>Optimized</b>
+              <span>Low-lag, async-safe patterns</span>
+            </div>
+            <div class="stat">
+              <b>Clean UX</b>
+              <span>Menus, feedback, config clarity</span>
+            </div>
+            <div class="stat">
+              <b>Support</b>
+              <span>Updates, fixes, improvements</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card hero-right">
+          <div class="mini">
+            <h3>Core Stack</h3>
+            <p>Spigot/Paper • Kotlin/Java • MySQL/SQLite • Redis (optional) • Webhooks • REST APIs</p>
+            <div class="chips">
+              <span class="chip">Paper / Purpur</span>
+              <span class="chip">LuckPerms/Vault</span>
+              <span class="chip">PlaceholderAPI</span>
+              <span class="chip">MTA:SA Lua</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>What you get</h3>
+            <p>Readable source, solid configs, permissions, logging, and a clean admin experience.</p>
+            <div class="chips">
+              <span class="chip">Config-first</span>
+              <span class="chip">Docs included</span>
+              <span class="chip">Performance budget</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Need something specific?</h3>
+            <p>Tell us your idea. We can prototype quickly and ship in milestones.</p>
+            <div class="chips">
+              <span class="chip">Fixed price</span>
+              <span class="chip">Milestones</span>
+              <span class="chip">NDA (optional)</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="services" class="card section-card">
+        <h3 class="section-title">Services</h3>
+        <div class="grid3">
+          <div class="feature">
+            <h4>Minecraft Plugins</h4>
+            <p>Custom gameplay systems, minigames, economy, clans, skills, quests, protection, moderation tools, and more.</p>
+            <span class="tag">Spigot / Paper</span>
+          </div>
+          <div class="feature">
+            <h4>MTA Resources</h4>
+            <p>Clean UI/UX, server systems, jobs, inventories, permissions, performance tuning, and integrations.</p>
+            <span class="tag">MTA:SA Lua</span>
+          </div>
+          <div class="feature">
+            <h4>Performance & Refactors</h4>
+            <p>Profiling, async fixes, database optimization, and cleanup of legacy code without breaking behavior.</p>
+            <span class="tag">Lag-free focus</span>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="feature">
+            <h4>Integrations</h4>
+            <p>Discord webhooks/bots, website panels, payment gates, cross-server messaging, APIs, and analytics.</p>
+            <span class="tag">Automation</span>
+          </div>
+          <div class="feature">
+            <h4>Delivery</h4>
+            <p>Config templates, permission docs, admin commands, and a clear update path. Optional source delivery.</p>
+            <span class="tag">Maintainable</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="card section-card">
+        <h3 class="section-title">Portfolio (examples)</h3>
+        <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.7;">
+          Replace these cards with your real projects, GitHub links, Spigot pages, or videos.
+        </p>
+
+        <div class="portfolio">
+          <div class="proj">
+            <h4>HyronCore</h4>
+            <p>Essentials-like base with modules: chat, homes, warps, kits, economy hooks, and staff tools.</p>
+            <div class="pillrow">
+              <span class="pill">Paper</span><span class="pill">YAML configs</span><span class="pill">Permissions</span>
+            </div>
+          </div>
+          <div class="proj">
+            <h4>Dungeon Instances</h4>
+            <p>Instanced dungeons with matchmaking, scaling mobs, loot tables, and party progression.</p>
+            <div class="pillrow">
+              <span class="pill">Boss AI</span><span class="pill">Loot</span><span class="pill">Async DB</span>
+            </div>
+          </div>
+          <div class="proj">
+            <h4>MTA Roleplay Systems</h4>
+            <p>Jobs, inventory, UI, banking, factions, and admin suite designed for low CPU usage.</p>
+            <div class="pillrow">
+              <span class="pill">Lua</span><span class="pill">UI</span><span class="pill">Optimization</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="card section-card">
+        <h3 class="section-title">How we work</h3>
+        <div class="grid3">
+          <div class="feature">
+            <h4>1) Scope</h4>
+            <p>We define features, edge cases, server version, dependencies, and performance constraints.</p>
+            <span class="tag">Clear requirements</span>
+          </div>
+          <div class="feature">
+            <h4>2) Build</h4>
+            <p>Milestone-based development with test builds, changelogs, and feedback loops.</p>
+            <span class="tag">Iterative delivery</span>
+          </div>
+          <div class="feature">
+            <h4>3) Ship</h4>
+            <p>Final QA, documentation, configs, permission nodes, and optional ongoing support plan.</p>
+            <span class="tag">Stable releases</span>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="feature">
+            <h4>Quality checks</h4>
+            <ul class="list">
+              <li>Profiling & performance budget</li>
+              <li>Thread safety and async patterns</li>
+              <li>Config validation and good defaults</li>
+              <li>Graceful failures & logging</li>
+            </ul>
+          </div>
+          <div class="feature">
+            <h4>Compatibility</h4>
+            <ul class="list">
+              <li>Paper/Purpur compatibility notes</li>
+              <li>Hook system for common plugins</li>
+              <li>Database migrations where needed</li>
+              <li>Versioned changelogs</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="card section-card">
+        <h3 class="section-title">Contact</h3>
+        <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.7;">
+          Fill this form (local demo), or connect your Discord/email links below.
+        </p>
+
+        <form id="contactForm">
+          <div class="row">
+            <input name="name" placeholder="Your name" autocomplete="name" required />
+            <input name="contact" placeholder="Discord tag / Email" autocomplete="email" required />
+          </div>
+          <div class="row">
+            <input name="project" placeholder="Project type (Minecraft / MTA / Both)" />
+            <input name="budget" placeholder="Budget (optional)" />
+          </div>
+          <textarea name="message" placeholder="Tell us what you want to build (features, server version, deadlines, examples)..." required></textarea>
+          <button class="btn primary" type="submit">Send Message <span aria-hidden="true">→</span></button>
+          <div class="hint" id="formHint">
+            Tip: to make this actually send emails, connect it to a backend (Node/PHP) or a service like Formspree.
+          </div>
+        </form>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+          <a class="btn" id="emailBtn" href="#">Email <span aria-hidden="true">↗</span></a>
+          <a class="btn" id="githubBtn" href="#">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="btn" id="spigotBtn" href="#">SpigotMC <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footerbox">
+          <div>© <span id="year"></span> Hyron Development</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="#top" class="btn" style="padding:8px 10px;">Back to top ↑</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    // ====== EDIT THESE LINKS ======
+    const LINKS = {
+      discord: "https://discord.gg/your-invite",
+      downloads: "https://example.com/downloads",
+      email: "mailto:contact@hyron.dev",
+      github: "https://github.com/your-org",
+      spigot: "https://www.spigotmc.org/resources/authors/yourname.000000/"
+    };
+
+    // Wire links
+    const setHref = (id, href) => { const el = document.getElementById(id); if (el) el.href = href; };
+    setHref("discordBtn", LINKS.discord);
+    setHref("storeBtn", LINKS.downloads);
+    setHref("emailBtn", LINKS.email);
+    setHref("githubBtn", LINKS.github);
+    setHref("spigotBtn", LINKS.spigot);
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", () => {
+        const open = mobileMenu.style.display !== "none";
+        mobileMenu.style.display = open ? "none" : "block";
+        menuBtn.textContent = open ? "☰" : "✕";
+      });
+    }
+
+    // Contact form demo behavior (no backend)
+    const form = document.getElementById("contactForm");
+    const hint = document.getElementById("formHint");
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      // You can replace this with fetch() to your API endpoint.
+      console.log("Contact form submitted:", data);
+
+      hint.textContent = "Saved locally (demo). Open DevTools → Console to see the payload. Connect a backend to receive messages.";
+      hint.style.color = "rgba(34,197,94,.95)";
+      form.reset();
+    });
+
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        if (!href || href === "#") return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        // close mobile menu after click
+        if (mobileMenu && mobileMenu.style.display !== "none") {
+          mobileMenu.style.display = "none";
+          if (menuBtn) menuBtn.textContent = "☰";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

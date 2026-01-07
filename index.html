@@ -3,434 +3,188 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stable | Minecraft Developer & Security Researcher</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Stable | Main Menu</title>
   <style>
-    :root {
-      --primary: #2a9d8f;
-      --primary-dark: #1d6f65;
-      --secondary: #264653;
-      --accent: #e9c46a;
-      --accent-dark: #d4ac2e;
-      --light: #f1faee;
-      --dark: #1a1a2e;
-      --danger: #e76f51;
-      --gray: #6c757d;
-      --transition: all 0.3s ease;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      --radius: 8px;
-    }
-    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
     
     body {
-      background-color: var(--dark);
-      color: var(--light);
+      background: #0d1117;
+      color: #e6edf3;
       line-height: 1.6;
-      overflow-x: hidden;
-    }
-    
-    .container {
-      max-width: 1200px;
+      padding: 20px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 0 20px;
     }
     
-    /* Header */
     header {
-      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary-dark) 100%);
-      padding: 4rem 2rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0LjQxTDQ0LjU5IDI2IDQyIDIzLjQxIDM2IDI5LjQxIDMwIDIzLjQxIDI3LjQxIDI2IDM2IDM0LjQxeiIvPjwvZz48L2c+PC9zdmc+');
-      opacity: 0.1;
-      z-index: 1;
-    }
-    
-    .header-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
+      padding: 40px 20px;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #30363d;
     }
     
     h1 {
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 2.8rem;
+      color: #58a6ff;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     
-    .tagline {
-      font-size: 1.4rem;
-      margin-bottom: 2rem;
-      color: var(--accent);
-      font-weight: 300;
-    }
-    
-    .title-breakdown {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .title-item {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 0.6rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    /* Sections */
-    section {
-      padding: 4rem 0;
-    }
-    
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: var(--accent);
-      position: relative;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background-color: var(--primary);
-      border-radius: 2px;
-    }
-    
-    /* About */
-    .about-content {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 2.5rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border-left: 5px solid var(--primary);
-    }
-    
-    .about-content p {
+    header p {
       font-size: 1.2rem;
-      margin-bottom: 1.5rem;
+      color: #8b949e;
+      margin-bottom: 20px;
     }
     
-    .highlight {
-      color: var(--accent);
-      font-weight: bold;
+    .mc-badge {
+      background: #1f6feb;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin: 0 5px;
     }
     
-    /* Skills */
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
+    section {
+      background: #161b22;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 30px;
+      border: 1px solid #30363d;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     
-    .skill-card {
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      border-top: 3px solid var(--primary);
+    h2 {
+      color: #58a6ff;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #30363d;
     }
     
-    .skill-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    ul {
+      padding-left: 20px;
     }
     
-    .skill-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
+    li {
+      margin-bottom: 12px;
+      padding-left: 10px;
     }
     
-    .skill-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-    }
-    
-    /* Server Info */
-    .server-card {
-      max-width: 600px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      padding: 3rem;
-      border-radius: var(--radius);
-      text-align: center;
-      box-shadow: var(--shadow);
+    .skills li, .roles li {
+      background: #0d1117;
+      padding: 12px 15px;
+      border-radius: 6px;
+      border-left: 4px solid #1f6feb;
     }
     
     .server-ip {
-      font-family: monospace;
-      font-size: 1.8rem;
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 1rem;
-      border-radius: var(--radius);
-      margin: 1.5rem 0;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .server-btn {
-      display: inline-block;
-      background-color: var(--accent);
-      color: var(--dark);
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: var(--transition);
-      margin-top: 1rem;
-    }
-    
-    .server-btn:hover {
-      background-color: var(--accent-dark);
-      transform: scale(1.05);
-    }
-    
-    /* Roles */
-    .roles-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    
-    .role-card {
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: var(--radius);
-      border-left: 4px solid var(--danger);
-      transition: var(--transition);
-    }
-    
-    .role-card:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-    }
-    
-    .role-title {
-      color: var(--primary);
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
-    
-    .role-org {
-      color: var(--accent);
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .role-position {
-      color: var(--gray);
-      font-size: 0.9rem;
-    }
-    
-    /* Footer */
-    footer {
-      background-color: var(--secondary);
-      padding: 2.5rem 0;
+      background: #0d1117;
+      border: 2px solid #238636;
+      border-radius: 6px;
+      padding: 15px;
       text-align: center;
-      margin-top: 4rem;
+      font-family: monospace;
+      font-size: 1.4rem;
+      color: #3fb950;
+      margin: 20px 0;
+      letter-spacing: 1px;
     }
     
-    footer p {
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 0.5rem;
-    }
-    
-    .footer-disclaimer {
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #8b949e;
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.5);
+      border-top: 2px solid #30363d;
+      margin-top: 40px;
     }
     
-    /* Responsive */
+    .server-info {
+      background: #13233a;
+      border: 1px solid #1f6feb;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    
     @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      
       h1 {
-        font-size: 2.5rem;
-      }
-      
-      .tagline {
-        font-size: 1.1rem;
-      }
-      
-      .section-title {
         font-size: 2rem;
-      }
-      
-      .title-item {
-        font-size: 0.8rem;
-        padding: 0.5rem 1rem;
       }
       
       section {
-        padding: 2.5rem 0;
+        padding: 20px;
       }
       
       .server-ip {
-        font-size: 1.4rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .tagline {
-        font-size: 1rem;
-      }
-      
-      .skills-container, .roles-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .server-card {
-        padding: 2rem 1.5rem;
+        font-size: 1.2rem;
+        padding: 12px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-content">
-      <h1>Mahan (Mr_Stable)</h1>
-      <p class="tagline">Programmer • Exploit Researcher • Minecraft Developer</p>
-      
-      <div class="title-breakdown">
-        <div class="title-item">Minecraft Enthusiast</div>
-        <div class="title-item">Server Testing Expert</div>
-        <div class="title-item">Plugin Developer</div>
-        <div class="title-item">Security Researcher</div>
-      </div>
+    <h1>Mahan (Mr_Stable)</h1>
+    <p>Programmer • Exploit Researcher • Minecraft Developer</p>
+    <div>
+      <span class="mc-badge">Minecraft</span>
+      <span class="mc-badge">Redstone</span>
+      <span class="mc-badge">Plugins</span>
+      <span class="mc-badge">Security</span>
     </div>
   </header>
 
-  <div class="container">
-    <section class="about">
-      <h2 class="section-title">About Me</h2>
-      <div class="about-content">
-        <p>Hello! I'm <span class="highlight">Stable</span>, a passionate Minecraft developer and security researcher with a focus on exploring server mechanics and identifying vulnerabilities.</p>
-        <p>My work involves testing server limits, analyzing redstone mechanics, and investigating plugin vulnerabilities for educational purposes and to help improve server security.</p>
-        <p>I believe in ethical hacking and penetration testing as tools for strengthening systems, not breaking them.</p>
-      </div>
-    </section>
+  <section class="about">
+    <h2>About Me</h2>
+    <p>Hey, I'm <strong style="color: #58a6ff;">Stable</strong>. I'm into Minecraft server testing, figuring out how to break things (so others can fix them), and messing with redstone and command blocks. Mostly just doing this for fun and to learn how stuff works.</p>
+    <p>I find plugin bugs and server limits, then report them properly. Not here to cause damage, just to understand how things work under the hood.</p>
+  </section>
 
-    <section class="skills">
-      <h2 class="section-title">My Skills</h2>
-      <div class="skills-container">
-        <div class="skill-card">
-          <div class="skill-icon">⚔️</div>
-          <h3>Server Testing & Load Simulation</h3>
-          <p>Stress testing servers to identify performance bottlenecks and capacity limits under extreme conditions.</p>
-        </div>
-        
-        <div class="skill-card">
-          <div class="skill-icon">🧠</div>
-          <h3>Redstone & Command Engineering</h3>
-          <p>Creating complex mechanisms, automation systems, and innovative command block contraptions.</p>
-        </div>
-        
-        <div class="skill-card">
-          <div class="skill-icon">🔒</div>
-          <h3>Ethical Hacking & Security</h3>
-          <p>Penetration testing, vulnerability assessment, and security research focused on Minecraft ecosystems.</p>
-        </div>
-        
-        <div class="skill-card">
-          <div class="skill-icon">🧪</div>
-          <h3>Plugin Debugging & Exploit Discovery</h3>
-          <p>Identifying, analyzing, and responsibly disclosing plugin vulnerabilities to developers.</p>
-        </div>
-        
-        <div class="skill-card">
-          <div class="skill-icon">🧭</div>
-          <h3>Plugin & Web Development</h3>
-          <p>Building custom plugins, tools, and web interfaces to enhance the Minecraft experience.</p>
-        </div>
-      </div>
-    </section>
+  <section class="skills">
+    <h2>What I Do</h2>
+    <ul>
+      <li>⚔️ Server Testing & Load Simulation - Seeing how much servers can handle</li>
+      <li>🧠 Redstone & Command Block Tricks - Building complex stuff in-game</li>
+      <li>🔒 Ethical Hacking (Pen Testing) - Finding security holes before others do</li>
+      <li>🧪 Plugin Debugging & Exploit Discovery - Figuring out why plugins break</li>
+      <li>🧭 Creating Plugins And Webpages - Making tools for servers</li>
+    </ul>
+  </section>
 
-    <section class="server">
-      <h2 class="section-title">Main Server</h2>
-      <div class="server-card">
-        <h3>MoonXCraft Network</h3>
-        <p>The premier Minecraft server experience I founded and continue to develop.</p>
-        <div class="server-ip">MoonXCraft.ir</div>
-        <p>Featuring custom plugins, unique gameplay mechanics, and regular updates.</p>
-        <a href="#" class="server-btn">Visit Server Info</a>
-      </div>
-    </section>
-    
-    <section class="roles">
-      <h2 class="section-title">My Roles</h2>
-      <div class="roles-container">
-        <div class="role-card">
-          <div class="role-org">MoonXCraft Network</div>
-          <div class="role-title">Founder & Lead Developer</div>
-          <div class="role-position">Architecting server infrastructure and leading development</div>
-        </div>
-        
-        <div class="role-card">
-          <div class="role-org">APCraft</div>
-          <div class="role-title">Founder & Developer</div>
-          <div class="role-position">Building innovative gameplay experiences</div>
-        </div>
-        
-        <div class="role-card">
-          <div class="role-org">KingMine</div>
-          <div class="role-title">Founder & Partner</div>
-          <div class="role-position">Strategic development and community growth</div>
-        </div>
-        
-        <div class="role-card">
-          <div class="role-org">Vanish</div>
-          <div class="role-title">Owner & Client Developer</div>
-          <div class="role-position">Specialized client-side tool development</div>
-        </div>
-        
-        <div class="role-card">
-          <div class="role-org">Hyron</div>
-          <div class="role-title">Main Owner & Lead Developer</div>
-          <div class="role-position">Primary architect and development lead</div>
-        </div>
-      </div>
-    </section>
-  </div>
+  <section class="server">
+    <h2>Main Server</h2>
+    <div class="server-info">
+      <p>Check out my main project:</p>
+      <div class="server-ip">MoonXCraft.ir</div>
+      <p>Custom plugins, survival, minigames, and regular updates. Been running it for a while now.</p>
+    </div>
+  </section>
+  
+  <section class="roles">
+    <h2>Current Projects & Roles</h2>
+    <ul>
+      <li><strong>MoonXCraft Network</strong> - Founder & Lead Dev</li>
+      <li><strong>APCraft</strong> - Founder & Dev</li>
+      <li><strong>KingMine</strong> - Founder & Partner</li>
+      <li><strong>Vanish</strong> - Owner & Client Dev</li>
+      <li><strong>Hyron</strong> - Main Owner & Main Dev</li>
+    </ul>
+  </section>
 
   <footer>
-    <div class="container">
-      <p>Made by Mr_Stable | For Educational Use Only</p>
-      <p class="footer-disclaimer">All security research is conducted ethically and responsibly with permission.</p>
-    </div>
+    <p>Made by Mr_Stable | For Educational Use Only</p>
+    <p>Contact: Probably through Discord somewhere</p>
   </footer>
 </body>
 </html>

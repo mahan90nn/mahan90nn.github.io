@@ -1,201 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mr_Stable | In Main Menu</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Arial, sans-serif;
-    }
-    
-    body {
-      background: #0d1117;
-      color: #e6edf3;
-      line-height: 1.6;
-      padding: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      margin-bottom: 40px;
-      border-bottom: 2px solid #30363d;
-    }
-    
-    h1 {
-      font-size: 2.8rem;
-      color: #58a6ff;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    header p {
-      font-size: 1.2rem;
-      color: #8b949e;
-      margin-bottom: 20px;
-    }
-    
-    .mc-badge {
-      background: #1f6feb;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      display: inline-block;
-      margin: 0 5px;
-    }
-    
-    section {
-      background: #161b22;
-      border-radius: 8px;
-      padding: 25px;
-      margin-bottom: 30px;
-      border: 1px solid #30363d;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    
-    h2 {
-      color: #58a6ff;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #30363d;
-    }
-    
-    ul {
-      padding-left: 20px;
-    }
-    
-    li {
-      margin-bottom: 12px;
-      padding-left: 10px;
-    }
-    
-    .skills li, .roles li {
-      background: #0d1117;
-      padding: 12px 15px;
-      border-radius: 6px;
-      border-left: 4px solid #1f6feb;
-    }
-    
-    .server-ip {
-      background: #0d1117;
-      border: 2px solid #238636;
-      border-radius: 6px;
-      padding: 15px;
-      text-align: center;
-      font-family: monospace;
-      font-size: 1.4rem;
-      color: #3fb950;
-      margin: 20px 0;
-      letter-spacing: 1px;
-    }
-    
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #8b949e;
-      font-size: 0.9rem;
-      border-top: 2px solid #30363d;
-      margin-top: 40px;
-    }
-    
-    .server-info {
-      background: #13233a;
-      border: 1px solid #1f6feb;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    
-    @media (max-width: 768px) {
-      body {
-        padding: 10px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      section {
-        padding: 20px;
-      }
-      
-      .server-ip {
-        font-size: 1.2rem;
-        padding: 12px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Mahan — Glass Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --bg: #f6f7fb;
+  --glass: rgba(255,255,255,0.65);
+  --border: rgba(255,255,255,0.4);
+  --text: #0f172a;
+  --muted: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top right, #eaefff, transparent 60%),
+    radial-gradient(circle at bottom left, #fdf2f8, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(16px);
+}
+
+nav button {
+  border: none;
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  padding: 10px 20px;
+  border-radius: 999px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all .3s ease;
+}
+
+nav button:hover,
+nav button.active {
+  background: white;
+  transform: translateY(-2px);
+}
+
+/* MAIN */
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 40px;
+}
+
+.section {
+  display: none;
+  animation: fadeSlide .6s ease forwards;
+}
+
+.section.active {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 50px;
+}
+
+/* GLASS CARD */
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0,0,0,.08);
+  transition: transform .4s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+h1 {
+  margin: 0;
+  font-size: 42px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 16px 0 30px;
+  line-height: 1.7;
+}
+
+/* BADGES */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.badge {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: white;
+  font-size: 13px;
+}
+
+/* LINKS */
+.links a {
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 12px;
+  text-decoration: none;
+  color: var(--text);
+  background: white;
+  padding: 10px 18px;
+  border-radius: 999px;
+  transition: .3s;
+}
+
+.links a:hover {
+  transform: translateY(-3px);
+}
+
+/* PHOTOS */
+.photos {
+  position: relative;
+  height: 500px;
+}
+
+.photo {
+  position: absolute;
+  background: white;
+  padding: 14px 14px 28px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.2);
+  animation: float 6s ease-in-out infinite;
+}
+
+.photo img {
+  width: 260px;
+  border-radius: 6px;
+}
+
+.photo.one {
+  top: 60px;
+  right: 80px;
+  transform: rotate(-5deg);
+}
+
+.photo.two {
+  top: 260px;
+  right: 220px;
+  transform: rotate(6deg);
+  animation-delay: 2s;
+}
+
+/* PROJECTS */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 24px;
+}
+
+.project {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  padding: 28px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  transition: all .35s ease;
+}
+
+.project:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: white;
+}
+
+.project h3 {
+  margin: 0 0 10px;
+}
+
+.project span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ANIMATIONS */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-12px) rotate(-4deg); }
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .section.active {
+    grid-template-columns: 1fr;
+  }
+  .photos {
+    height: 420px;
+  }
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Mahan (Mr_Stable)</h1>
-    <p>Programmer • Exploit Researcher • Minecraft Developer</p>
-    <div>
-      <span class="mc-badge">Minecraft</span>
-      <span class="mc-badge">Redstone</span>
-      <span class="mc-badge">Plugins</span>
-      <span class="mc-badge">Security</span>
+
+<header>
+  <strong>MoonXCraft</strong>
+  <nav>
+    <button class="active" onclick="show('home')">Home</button>
+    <button onclick="show('projects')">Projects</button>
+    <button onclick="show('contact')">Contact</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="section active">
+  <div class="card">
+    <h1>I’m Mahan</h1>
+    <p class="subtitle">
+      Developer & Minecraft server owner.  
+      Building clean systems, clients, and communities.
+    </p>
+
+    <div class="badges">
+      <span class="badge">MoonXCraft</span>
+      <span class="badge">CraftsMC</span>
+      <span class="badge">StableClient</span>
+      <span class="badge">Web</span>
     </div>
-  </header>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p>Hey, I'm <strong style="color: #58a6ff;">Stable</strong>. I'm into Minecraft server testing, figuring out how to break things (so others can fix them), and messing with redstone and command blocks. Mostly just doing this for fun and to learn how stuff works.</p>
-    <p>I find plugin bugs and server limits, then report them properly. Not here to cause damage, just to understand how things work under the hood.</p>
-  </section>
-
-  <section class="skills">
-    <h2>What I Do</h2>
-    <ul>
-      <li>⚔️ Server Testing & Load Simulation - Seeing how much servers can handle</li>
-      <li>🧠 Redstone & Command Block Tricks - Building complex stuff in-game</li>
-      <li>🔒 Ethical Hacking (Pen Testing) - Finding security holes before others do</li>
-      <li>🧪 Plugin Debugging & Exploit Discovery - Figuring out why plugins break</li>
-      <li>🧭 Creating Plugins And Webpages - Making tools for servers</li>
-    </ul>
-  </section>
-
-  <section class="server">
-    <h2>Main Server</h2>
-    <div class="server-info">
-      <p>Check out my main project:</p>
-      <div class="server-ip">Play.MoonXCraft.ir</div>
-      <p>Custom plugins, survival, minigames, and regular updates. Been running it for a while now.</p>
+    <div class="links">
+      <a href="https://github.com/mahan90nn" target="_blank">GitHub</a>
+      <a href="https://rubika.ir/bungeecord" target="_blank">Rubika</a>
+      <a href="https://moonxcraft.ir" target="_blank">Server</a>
     </div>
-  </section>
-  
-  <section class="roles">
-    <h2>Current Projects & Roles</h2>
-    <ul>
-      <li><strong>MoonXCraft Network</strong> - Founder & Lead Dev</li>
-      <li><strong>APCraft</strong> - Founder & Dev</li>
-      <li><strong>KingMine</strong> - Founder & Partner</li>
-      <li><strong>Vanish</strong> - Owner & Client Dev</li>
-      <li><strong>Hyron</strong> - Main Owner & Main Dev</li>
-    </ul>
-  </section>
-  
-  <section class="work">
-    <h2>Currently Working On</h2>
-    <ul>
-      <li><strong>VanishClient</strong> - Best Iranian Crash Client</li>
-      <li><strong>Somg Custom</strong> - A Client A To Crash Servers But Customized</li>
-      <li><strong>Port Scanner Pro</strong> - A Python App To Scan Ports</li>
-      <li><strong>Meteor Addon</strong> - A Crash Addon For Meteor Client</li>
-      <li><strong>Hyron Website</strong> - Hyron Developemnt Site</li>
-    </ul>
-  </section>
+  </div>
 
-  <footer>
-    <p>Made by Mr_Stable | For Educational Use Only</p>
-    <p>Contact: Probably through Discord somewhere</p>
-  </footer>
+  <div class="photos">
+    <div class="photo one"><img src="pic1.png"></div>
+    <div class="photo two"><img src="pic2.png"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="card">
+    <h1>Projects</h1>
+    <p class="subtitle">Servers & development projects</p>
+
+    <div class="projects">
+      <div class="project">
+        <h3>MoonXCraft</h3>
+        <span>Minecraft Server</span>
+      </div>
+
+      <div class="project">
+        <h3>CraftsMC</h3>
+        <span>Minecraft Server</span>
+      </div>
+
+      <div class="project">
+        <h3>StableClient</h3>
+        <span>Custom Minecraft Client</span>
+      </div>
+
+      <div class="project">
+        <h3>MoonXCraft Website</h3>
+        <span>Web Project</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="card">
+    <h1>Contact</h1>
+    <p class="subtitle">
+      GitHub: github.com/mahan90nn <br>
+      Rubika: rubika.ir/bungeecord <br>
+      Server: moonxcraft.ir
+    </p>
+  </div>
+</section>
+
+</main>
+
+<script>
+function show(id){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
 </body>
 </html>
